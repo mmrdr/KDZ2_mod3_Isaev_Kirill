@@ -8,6 +8,8 @@ namespace ClassLib
 {
     public partial class HelpingMethods
     {
+        internal static ConsoleKey consoleKey;
+
         internal static string file_path;
 
         internal static List<Hero> currentAppUsers;
@@ -24,7 +26,7 @@ namespace ClassLib
             file_path = path;
         }
 
-        internal static ConsoleKey Item()
+        internal static ConsoleKey ItemForSorting()
         {
             var key = Console.ReadKey().Key;
             while (key != ConsoleKey.D1 && key != ConsoleKey.D2 && key != ConsoleKey.D3 && key != ConsoleKey.D4
@@ -35,6 +37,60 @@ namespace ClassLib
                 key = Console.ReadKey().Key;
             }
             return key;
+        }
+
+        internal static ConsoleKey ItemForChange()
+        {
+            var key = Console.ReadKey().Key;
+            while (key != ConsoleKey.D1 && key != ConsoleKey.D2 && key != ConsoleKey.D3 && key != ConsoleKey.D4
+                && key != ConsoleKey.D5)
+            {
+                Console.WriteLine();
+                PrintWithColor("Incorrect input, try again: ", ConsoleColor.Red);
+                key = Console.ReadKey().Key;
+            }
+            return key;
+        }
+
+        internal static ConsoleKey ItemForMenu()
+        {
+            var key = Console.ReadKey().Key;
+            while (key != ConsoleKey.D1 && key != ConsoleKey.D2 && key != ConsoleKey.D3 && key != ConsoleKey.D4 && key != ConsoleKey.D5)
+            {
+                Console.WriteLine();
+                PrintWithColor("Incorrect input, try again: ", ConsoleColor.Red);
+                key = Console.ReadKey().Key;
+            }
+            consoleKey = key;
+            return key;
+        }
+
+        internal static void WriteMenu()
+        {
+            Console.Clear();
+            PrintWithColor("1. Write data to console\n" +
+                "2. Write data to current file\n" +
+                "3. Write data to new file", ConsoleColor.Yellow);
+            switch (ItemForMenu())
+            {
+                case ConsoleKey.D1:
+                    Console.Clear();
+                    foreach (var hero in currentAppUsers)
+                    {
+                        Console.WriteLine(hero.ToJson());
+                    }
+                    break;
+                case ConsoleKey.D2:
+                    Console.Clear();
+                    DataProcessing.SerializeToJsonFile(currentAppUsers, file_path);
+                    break;
+                case ConsoleKey.D3:
+                    Console.Clear();
+                    GetFilePath();
+                    DataProcessing.SerializeToJsonFile(currentAppUsers, file_path);
+                    Console.Clear();
+                    break;
+            }
         }
     }
 }

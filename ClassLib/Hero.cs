@@ -1,6 +1,10 @@
-﻿namespace ClassLib
+﻿using System.Diagnostics;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace ClassLib
 {
-    public class Hero
+    public sealed class Hero
     {
         private string heroId;
         private string heroName;
@@ -8,30 +12,51 @@
         private int level;
         private string castleLocation;
         private int troops;
-        private List<Units> units;
+        private List<Units> units = new();
 
-        public string HeroId { get { return heroId; } }
-        public string HeroName { get {  return heroName; } }
-        public string Fraction { get { return fracion; } }
-        public int Level { get { return level; } }
-        public string CastleLocation { get {  return castleLocation; } }
-        public int Troops { get {  return troops; } }
-        public List<Units> Units { get {  return units; } }
+        [JsonPropertyName("hero_id")]
+        public string HeroId { get { return heroId; } set { heroId = value; } }
+
+        [JsonPropertyName("hero_name")]
+        public string HeroName { get {  return heroName; } set { heroName = value; } }
+
+        [JsonPropertyName("faction")]
+        public string Fraction { get { return fracion; } set { fracion = value; } }
+
+        [JsonPropertyName("level")]
+        public int Level { get { return level; } set { level = value; } }
+
+        [JsonPropertyName("castle_location")]
+        public string CastleLocation { get { return castleLocation; } set { castleLocation = value; } }
+
+        [JsonPropertyName("troops")]
+        public int Troops { get {  return troops; } set { troops = value; } }
+
+        [JsonPropertyName("units")]
+        public List<Units> Units
+        {
+            get => units.ToList();
+            set
+            {
+                units = value.ToList();
+            }
+        }
 
         public Hero(string HeroId, string HeroName, string Fraction, int Level, string CastleLocation, int Troops, List<Units> Units)
         {
-            heroId = HeroId;
-            heroName = HeroName;
-            fracion = Fraction;
-            level = Level;
-            castleLocation = CastleLocation;
-            troops = Troops;
-            units = Units;
+            this.HeroId = HeroId;
+            this.HeroName = HeroName;
+            this.Fraction = Fraction;
+            this.Level = Level;
+            this.CastleLocation = CastleLocation;
+            this.Troops = Troops;
+            this.Units = Units;
         }
 
         public string ToJson()
         {
-            throw new NotImplementedException();
+            var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
+            return JsonSerializer.Serialize(this, jsonOptions);
         }
     }
 }

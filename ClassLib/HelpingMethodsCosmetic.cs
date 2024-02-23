@@ -15,14 +15,14 @@ namespace ClassLib
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        internal static void Welcoming()
+        internal static void WelcomingForSorting()
         {
-            PrintWithColor("Which field will be selectered: ", ConsoleColor.Yellow);
-            SelectionSortingMenu();
-            Console.CursorVisible = false;
+            PrintWithColor("Which field should I sort by: ", ConsoleColor.Yellow);
+            SortingMenu();
+            Console.CursorVisible = false;        
         }
 
-        internal static void SelectionSortingMenu()
+        internal static void SortingMenu()
         {
             Console.WriteLine("1. HeroId\n" +
                 "2. HeroName\n" +
@@ -30,6 +30,25 @@ namespace ClassLib
                 "4. Level\n" +
                 "5. CastleLocation\n" +
                 "6. Troops");
+        }
+
+        internal static void ChangeMenu()
+        {
+            PrintWithColor("What property should I change?", ConsoleColor.Yellow);
+            Console.WriteLine("1. HeroName\n" +
+                "2. Fraction\n" +
+                "3. Level\n" +
+                "4. CastleLocation\n" +
+                "5. Troops");
+        }
+
+        internal static void ShowMenu()
+        {
+            PrintWithColor("1. Change file path\n" +
+                "2. Write data\n" +
+                "3. Perform Sorting\n" +
+                "4. Change json object\n" +
+                "5. Exit", ConsoleColor.Yellow);
         }
     }
 }
