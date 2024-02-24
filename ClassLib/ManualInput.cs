@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ClassLib
 {
+    /// <summary>
+    /// This class implements great feature of this project.
+    /// </summary>
     public class ManualInput
     {
         private static List<Hero> heroes;
@@ -16,9 +19,13 @@ namespace ClassLib
 
         private static int currentUnitPos;
 
+        /// <summary>
+        /// This method create SUPER BEAUTY menu for user.
+        /// </summary>
+        /// <returns>User's input.</returns>
         private static string BeautyMenuForHero()
         {
-            string[] menuItems = { "1. Hero Id\n", "2. Hero Name\n", "3. Fraction\n", "4. Level\n", "5. Castle Location\n", "6. Troops\n", "7. Units\n" };
+            string[] menuItems = { "1. Hero Id\n", "2. Hero Name\n", "3. Faction\n", "4. Level\n", "5. Castle Location\n", "6. Troops\n", "7. Units\n" };
             int selectedItemIndex = 0;
             Console.CursorVisible = false;
             while (true)
@@ -63,7 +70,10 @@ namespace ClassLib
                 }
             }
         }
-
+        /// <summary>
+        /// Same like BeautyMenuForHero().
+        /// </summary>
+        /// <returns>User's input.</returns>
         private static string BeautyMenuForUnit()
         {
             string[] menuItems = { "1. Unit Name\n", "2. Quantity\n", "3. Experience\n", "4. Current Location\n" };
@@ -112,6 +122,12 @@ namespace ClassLib
             }
         }
 
+        /// <summary>
+        /// This method will delete name of field, if field is already picked and filled by user.
+        /// </summary>
+        /// <param name="pressed">That needs to be deleted.</param>
+        /// <param name="isPressed">List with all fields, which need to fill.</param>
+        /// <param name="number">Amount of fields. Actually it allows me to implement beauty menu over the "fields that should to be filled" menu.</param>
         private static void Statistics(string pressed, List<string> isPressed, int number)
         {
             Console.Clear();
@@ -134,6 +150,12 @@ namespace ClassLib
             else HelpingMethods.PrintWithColor("You fill all fields", ConsoleColor.Yellow);
         }
 
+        /// <summary>
+        /// Same like Statistics().
+        /// </summary>
+        /// <param name="pressed">Same.</param>
+        /// <param name="unitIsPressed">Same.</param>
+        /// <param name="number">Same.</param>
         private static void StatisticsForUnit(string pressed, List<string> unitIsPressed, int number)
         {
             Console.Clear();
@@ -156,6 +178,10 @@ namespace ClassLib
             else HelpingMethods.PrintWithColor("You fill all fields", ConsoleColor.Yellow);
         }
 
+        /// <summary>
+        /// This method exists only because of FillJson() Method. Allows user to fill data of Units MANUALLY.
+        /// </summary>
+        /// <param name="unitCount">Amount of Units.</param>
         private static void FillUnit(int unitCount)
         {
             currentUnitPos = 0;
@@ -251,17 +277,21 @@ namespace ClassLib
             } 
         }
 
+        /// <summary>
+        /// This method allows user to input data for json file MANUALLY.
+        /// </summary>
+        /// <param name="heroCount">Amount of Heroes.</param>
         public static void FillJson(int heroCount)
         {
             currentHeroPos = 0;
             heroes = new List<Hero>();
             for (int currentHero = 0; currentHero < heroCount; currentHero++)
             {
-                currentHeroPos++;
+                currentHeroPos++; // Its for Statistics() method.
                 try
                 {
-                    List<string> isPressed = new List<string> {  "Hero Id", "Hero Name", "Fraction", "Level",
-                        "Castle Location", "Troops", "Units"};
+                    List<string> isPressed = new List<string> {  "Hero Id", "Hero Name", "Faction", "Level",
+                        "Castle Location", "Troops", "Units"}; // List with all not filled fields.
 
                     heroes.Add(new Hero());
                     heroes[currentHero].Level = -1;
@@ -273,7 +303,7 @@ namespace ClassLib
                     {
                         var choosenField = BeautyMenuForHero();
                         Thread.Sleep(1000);
-                        switch (choosenField)
+                        switch (choosenField) // Actually I describe, how methods like this work... But i can do it again. User pressed 1 - Hero Id will be filled.
                         {
                             case "1. Hero Id\n":
                                 Console.Clear();
@@ -301,9 +331,9 @@ namespace ClassLib
                                 Statistics("Hero Name", isPressed, heroCount);
                                 Thread.Sleep(2000);
                                 break;
-                            case "3. Fraction\n":
+                            case "3. Faction\n":
                                 Console.Clear();
-                                HelpingMethods.PrintWithColor("Input hero's fraction", ConsoleColor.Yellow);
+                                HelpingMethods.PrintWithColor("Input hero's faction", ConsoleColor.Yellow);
                                 var fraction = Console.ReadLine();
                                 while (fraction == null || String.IsNullOrEmpty(fraction))
                                 {
@@ -311,7 +341,7 @@ namespace ClassLib
                                     fraction = Console.ReadLine();
                                 }
                                 heroes[currentHero].Fraction = fraction;
-                                Statistics("Fraction", isPressed, heroCount);
+                                Statistics("Faction", isPressed, heroCount);
                                 Thread.Sleep(2000);
                                 break;
                             case "4. Level\n":

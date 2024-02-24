@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClassLib
 {
+    /// <summary>
+    /// This partial class makes all "dirty work".
+    /// Check for correctness, a lot of "prints" in console.
+    /// </summary>
     public partial class HelpingMethods
     {
         internal static ConsoleKey consoleKey;
@@ -14,6 +18,9 @@ namespace ClassLib
 
         internal static List<Hero> currentAppUsers;
 
+        /// <summary>
+        /// This method check for correctness user's input(actually - path for file) and allow record this path to static field in class (file_path).
+        /// </summary>
         internal static void GetFilePath()
         {
             Console.WriteLine("Input full path to file");
@@ -25,7 +32,10 @@ namespace ClassLib
             }
             file_path = path;
         }
-
+        /// <summary>
+        /// Check for correctness and return user's input.
+        /// </summary>
+        /// <returns>So useful ConsoleKey from user's input.</returns>
         internal static ConsoleKey ItemForSorting()
         {
             var key = Console.ReadKey().Key;
@@ -38,7 +48,11 @@ namespace ClassLib
             }
             return key;
         }
-
+        /// <summary>
+        /// Like...another version of ItemForSorting().
+        /// Actually, this method has "Talking" name.
+        /// </summary>
+        /// <returns>So useful ConsoleKey from user's input.</returns>
         internal static ConsoleKey ItemForChange()
         {
             var key = Console.ReadKey().Key;
@@ -52,6 +66,10 @@ namespace ClassLib
             return key;
         }
 
+        /// <summary>
+        /// I told you, that this class makes all "dirty" work.
+        /// </summary>
+        /// <returns>So useful ConsoleKey from user's input.</returns>
         internal static ConsoleKey ItemForMenu()
         {
             var key = Console.ReadKey().Key;
@@ -64,7 +82,9 @@ namespace ClassLib
             consoleKey = key;
             return key;
         }
-
+        /// <summary>
+        /// Useful class. It implements menu, that have 3 options: write data to console, write data to current file, write data to new file.
+        /// </summary>
         internal static void WriteMenu()
         {
             Console.Clear();
@@ -97,7 +117,11 @@ namespace ClassLib
                     break;
             }
         }
-
+        /// <summary>
+        /// Method check user's input for correctness and (by mod out) return it.
+        /// </summary>
+        /// <param name="n">Data for return</param>
+        /// <param name="name">Type of data</param>
         internal static void GetNumber(out int n, string name)
         {
             Console.WriteLine($"Input amount of {name}");

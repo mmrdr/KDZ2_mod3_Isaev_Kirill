@@ -2,17 +2,29 @@
 
 namespace ClassLib
 {
+    /// <summary>
+    /// This class implements all hard work with data.
+    /// </summary>
     public class DataProcessing
     {
         public static List<Hero> SelectedHeroes;
 
+        /// <summary>
+        /// This method serialize data to some file.
+        /// </summary>
+        /// <param name="heroes">This is list, that gives method data to serialize it to the file.</param>
+        /// <param name="filePath">This path refer to file, that will take data from method.</param>
         public static void SerializeToJsonFile(List<Hero> heroes, string filePath)
         {
             var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
             string json = JsonSerializer.Serialize(heroes, jsonOptions);
             File.WriteAllText(filePath, json);
         }
-
+        /// <summary>
+        /// This method deserialize data from json file to C# object(Hero,Units).
+        /// </summary>
+        /// <param name="filePath">This path refer to file, that will gives data to this method.</param>
+        /// <returns>List with json's data.</returns>
         public static List<Hero> DeserializeFromJsonFile(string filePath)
         {
             string json = File.ReadAllText(filePath);
@@ -20,7 +32,10 @@ namespace ClassLib
             HelpingMethods.currentAppUsers = heroesFromJson;
             return heroesFromJson;
         }
-
+        /// <summary>
+        /// This method will sort objects in list with data.
+        /// </summary>
+        /// <returns>Sorted list(by any choosen field).</returns>
         public static List<Hero> Sorting()
         {
             if (HelpingMethods.currentAppUsers == null)
@@ -30,7 +45,7 @@ namespace ClassLib
             }
             HelpingMethods.WelcomingForSorting(); 
             var tempSelectedUsers = new Hero[HelpingMethods.currentAppUsers.Count()];
-            switch (HelpingMethods.ItemForSorting())
+            switch (HelpingMethods.ItemForSorting()) // Pretty simple, if user press 1 - will sort by 1st field...And that's all.
             {
                 case ConsoleKey.D1:
                     Console.Clear();
@@ -71,7 +86,10 @@ namespace ClassLib
             HelpingMethods.currentAppUsers = SelectedHeroes;
             return SelectedHeroes;
         }
-
+        /// <summary>
+        /// This beauty method allow user to change hero's data manually.
+        /// </summary>
+        /// <returns>List with some changed data.</returns>
         public static List<Hero> ChangeHero()
         {
             if (HelpingMethods.currentAppUsers == null)
@@ -83,14 +101,14 @@ namespace ClassLib
                 "Please, input hero number: ", ConsoleColor.Yellow);
             var id = Console.ReadLine();
             while (id == null || String.IsNullOrEmpty(id) || !int.TryParse(id, out int x) 
-                || int.Parse(id) > HelpingMethods.currentAppUsers.Count() || int.Parse(id) < 0)
+                || int.Parse(id) >= HelpingMethods.currentAppUsers.Count() || int.Parse(id) < 0)
             {
                 HelpingMethods.PrintWithColor("There is no hero with this number, try again", ConsoleColor.Red);
                 id = Console.ReadLine();
             }
             var tempSelectedUsers = new Hero[HelpingMethods.currentAppUsers.Count()];
             HelpingMethods.ChangeMenu();
-            switch (HelpingMethods.ItemForChange())
+            switch (HelpingMethods.ItemForChange()) // Ok, that works the same, like in Sorting() method.
             {
                 case ConsoleKey.D1:
                     Console.Clear();

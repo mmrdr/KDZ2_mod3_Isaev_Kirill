@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace ClassLib
 {
+    /// <summary>
+    /// Another part of partial class "HelpingMethods"
+    /// Only cosmetic methods(I mean, a lot of "print" in console).
+    /// </summary>
     public partial class HelpingMethods
     {
+        /// <summary>
+        /// This method makes text more beauty.
+        /// </summary>
+        /// <param name="text">This text will be modified</param>
+        /// <param name="color">Text will be decorated by this color</param>
         internal static void PrintWithColor(string text, ConsoleColor color)
         {
             Console.ForegroundColor = color;

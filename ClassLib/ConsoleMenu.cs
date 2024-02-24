@@ -1,9 +1,12 @@
 ﻿namespace ClassLib
 {
+    /// <summary>
+    /// This class implements user interaction.
+    /// </summary>
     public class ConsoleMenu
     {
         /// <summary>
-        /// Second startpoint at this program.
+        /// Second start point at this program.
         /// </summary>
         public static void StartComputer()
         {
@@ -23,14 +26,17 @@
             }
         }
 
+        /// <summary>
+        /// This method gives a choice of action.
+        /// </summary>
         private static void BeginAction()
         {
             HelpingMethods.PrintWithColor("The first of all - input path to json file", ConsoleColor.Yellow);
-            HelpingMethods.GetFilePath();
+            HelpingMethods.GetFilePath(); // Need to take some data from somewhere.
             DataProcessing.DeserializeFromJsonFile(HelpingMethods.file_path);
             HelpingMethods.PrintWithColor("Data loaded", ConsoleColor.Green);
             Thread.Sleep(2000);            
-            do
+            do // Actually, its pretty simple, user will press action's buttons, when he pressed 6, program will stop. 
             {
                 Console.Clear();
                 HelpingMethods.ShowMenu();
@@ -40,6 +46,7 @@
                     case ConsoleKey.D1:
                         Console.Clear();
                         HelpingMethods.GetFilePath();
+                        DataProcessing.DeserializeFromJsonFile(HelpingMethods.file_path);
                         HelpingMethods.PrintWithColor("Data loaded", ConsoleColor.Green);
                         Thread.Sleep(1000);
                         break;
@@ -50,9 +57,17 @@
                         break;
                     case ConsoleKey.D3:
                         Console.Clear();
-                        DataProcessing.Sorting();
-                        HelpingMethods.PrintWithColor("Data loaded", ConsoleColor.Green);
-                        Thread.Sleep(1000);
+                        if (HelpingMethods.currentAppUsers.Count <= 0)
+                        {
+                            HelpingMethods.PrintWithColor("Cant sort file", ConsoleColor.Red);
+                            Thread.Sleep(1000);
+                        }                           
+                        else
+                        {
+                            DataProcessing.Sorting();
+                            HelpingMethods.PrintWithColor("Data loaded", ConsoleColor.Green);
+                            Thread.Sleep(1000);
+                        }
                         break;
                     case ConsoleKey.D4:
                         Console.Clear();

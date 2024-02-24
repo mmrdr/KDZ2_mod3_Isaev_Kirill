@@ -5,6 +5,9 @@ using System.Text.Json.Serialization;
 
 namespace ClassLib
 {
+    /// <summary>
+    /// Information of json's file is stored here.
+    /// </summary>
     public sealed class Hero
     {
         private string heroId;
@@ -52,6 +55,11 @@ namespace ClassLib
             Units = new List<Units>();
         }
 
+        /// <summary>
+        /// Like method ToString().
+        /// It allows convert(serialize) some info to json file.
+        /// </summary>
+        /// <returns>Convert to json file(serialize).</returns>
         public string ToJson()
         {
             var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
