@@ -55,10 +55,18 @@
                         Thread.Sleep(1000);
                         break;
                     case ConsoleKey.D4:
-                        Console.Clear();                        
-                        DataProcessing.ChangeHero();
-                        HelpingMethods.PrintWithColor("Complete!", ConsoleColor.Green);
-                        Thread.Sleep(1000);
+                        Console.Clear();
+                        if (HelpingMethods.currentAppUsers.Count == 0 || HelpingMethods.currentAppUsers.Count < 0)
+                        {
+                            HelpingMethods.PrintWithColor("Cant edit data", ConsoleColor.Red);
+                            Thread.Sleep(1000);
+                        }
+                        else
+                        {
+                            DataProcessing.ChangeHero();
+                            HelpingMethods.PrintWithColor("Complete!", ConsoleColor.Green);
+                            Thread.Sleep(1000);
+                        }
                         break;
                     case ConsoleKey.D5:
                         Console.Clear();

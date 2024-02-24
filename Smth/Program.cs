@@ -6,15 +6,26 @@ namespace StartGame
     public class Program
     {
         static void Main(string[] args)
-        {            
-            do
+        {
+            try
             {
-                Console.Clear();
-                ConsoleMenu.StartComputer();
-                Console.Clear();
-                Console.WriteLine("If you want to close app: input ENTER\n" +
-                    "Else another input");
-            } while(Console.ReadKey().Key != ConsoleKey.Enter);          
+                do
+                {
+                    Console.Clear();
+                    ConsoleMenu.StartComputer();
+                    Console.Clear();
+                    Console.WriteLine("If you want to close app: input ENTER\n" +
+                        "Else another input");
+                } while (Console.ReadKey().Key != ConsoleKey.Enter);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }   

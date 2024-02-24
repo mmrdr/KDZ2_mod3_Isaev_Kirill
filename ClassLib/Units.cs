@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace ClassLib
@@ -32,6 +34,7 @@ namespace ClassLib
         }
 
         public Units() { }
+
 
         public string ToJson()
         {
