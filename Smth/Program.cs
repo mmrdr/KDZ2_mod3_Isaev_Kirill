@@ -1,4 +1,4 @@
-﻿//C:\Users\murd3rRRR\source\repos\KDZ2_mod3_Isaev_Kirill\Smth\TestData\18V.JSON
+﻿
 /*
  * Isaev Kirill 
  * 2310
