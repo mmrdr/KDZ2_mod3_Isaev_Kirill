@@ -26,7 +26,7 @@ namespace ClassLib
         {
             Console.WriteLine("1. HeroId\n" +
                 "2. HeroName\n" +
-                "3. Fraction\n" +
+                "3. Faction\n" +
                 "4. Level\n" +
                 "5. CastleLocation\n" +
                 "6. Troops");
@@ -36,7 +36,7 @@ namespace ClassLib
         {
             PrintWithColor("What property should I change?", ConsoleColor.Yellow);
             Console.WriteLine("1. HeroName\n" +
-                "2. Fraction\n" +
+                "2. Faction\n" +
                 "3. Level\n" +
                 "4. CastleLocation\n" +
                 "5. Troops");

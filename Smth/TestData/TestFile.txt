@@ -2,33 +2,10 @@
   {
     "hero_id": "1",
     "hero_name": "Kirill",
-    "faction": "Wizard",
-    "level": 1000,
+    "fraction": "Wizard",
+    "level": 100,
     "castle_location": "Moscow",
     "troops": 10,
-    "units": [
-      {
-        "unit_name": "Pelmen",
-        "quantity": 1,
-        "experience": 20,
-        "current_location": "Sofa"
-      }
-    ]
-  },
-  {
-    "hero_id": "2",
-    "hero_name": "Yulia",
-    "faction": "Healer",
-    "level": 50,
-    "castle_location": "Moscow",
-    "troops": 5,
-    "units": [
-      {
-        "unit_name": "Gena",
-        "quantity": 1,
-        "experience": 20,
-        "current_location": "Sofa"
-      }
-    ]
+    "units": []
   }
 ]
