@@ -8,8 +8,8 @@
         public static void StartComputer()
         {
             HelpingMethods.PrintWithColor("Press SPACEBAR to start app", ConsoleColor.Yellow);
-            var vkl = Console.ReadKey().Key;
-            if (vkl == ConsoleKey.Spacebar)
+            var startButton = Console.ReadKey().Key;
+            if (startButton == ConsoleKey.Spacebar)
             {
                 Console.Clear();
                 BeginAction();
@@ -46,7 +46,7 @@
                     case ConsoleKey.D2:
                         Console.Clear();
                         HelpingMethods.WriteMenu();
-                        Thread.Sleep(10000);
+                        Thread.Sleep(1000);
                         break;
                     case ConsoleKey.D3:
                         Console.Clear();
@@ -60,8 +60,16 @@
                         HelpingMethods.PrintWithColor("Complete!", ConsoleColor.Green);
                         Thread.Sleep(1000);
                         break;
+                    case ConsoleKey.D5:
+                        Console.Clear();
+                        int amount;
+                        HelpingMethods.GetNumber(out amount,"heroes");
+                        ManualInput.FillJson(amount);
+                        HelpingMethods.PrintWithColor("Data loaded", ConsoleColor.Green);
+                        Thread.Sleep(1000);
+                        break;
                 }
-            } while (HelpingMethods.consoleKey != ConsoleKey.D5);
+            } while (HelpingMethods.consoleKey != ConsoleKey.D6);
         }
     }
 }

@@ -31,6 +31,8 @@ namespace ClassLib
             this.CurrentLocation = CurrentLocation;
         }
 
+        public Units() { }
+
         public string ToJson()
         {
             var jsonOptions = new JsonSerializerOptions { WriteIndented = true };

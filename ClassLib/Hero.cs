@@ -12,7 +12,7 @@ namespace ClassLib
         private int level;
         private string castleLocation;
         private int troops;
-        private List<Units> units = new();
+        private List<Units> units;
 
         [JsonPropertyName("hero_id")]
         public string HeroId { get { return heroId; } set { heroId = value; } }
@@ -33,14 +33,7 @@ namespace ClassLib
         public int Troops { get {  return troops; } set { troops = value; } }
 
         [JsonPropertyName("units")]
-        public List<Units> Units
-        {
-            get => units.ToList();
-            set
-            {
-                units = value.ToList();
-            }
-        }
+        public List<Units> Units { get { return units; } set { units = value; } }
 
         public Hero(string HeroId, string HeroName, string Fraction, int Level, string CastleLocation, int Troops, List<Units> Units)
         {
@@ -51,6 +44,11 @@ namespace ClassLib
             this.CastleLocation = CastleLocation;
             this.Troops = Troops;
             this.Units = Units;
+        }
+
+        public Hero()
+        {
+            Units = new List<Units>();
         }
 
         public string ToJson()

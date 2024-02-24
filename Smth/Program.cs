@@ -6,8 +6,15 @@ namespace StartGame
     public class Program
     {
         static void Main(string[] args)
-        {
-            ConsoleMenu.StartComputer();
+        {            
+            do
+            {
+                Console.Clear();
+                ConsoleMenu.StartComputer();
+                Console.Clear();
+                Console.WriteLine("If you want to close app: input ENTER\n" +
+                    "Else another input");
+            } while(Console.ReadKey().Key != ConsoleKey.Enter);          
         }
     }
-}
+}   

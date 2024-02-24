@@ -48,7 +48,8 @@ namespace ClassLib
                 "2. Write data\n" +
                 "3. Perform Sorting\n" +
                 "4. Change json object\n" +
-                "5. Exit", ConsoleColor.Yellow);
+                "5. Create your own json file(input data manually)\n" +
+                "6. Exit", ConsoleColor.Yellow);
         }
     }
 }

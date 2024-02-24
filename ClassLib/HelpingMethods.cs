@@ -55,7 +55,7 @@ namespace ClassLib
         internal static ConsoleKey ItemForMenu()
         {
             var key = Console.ReadKey().Key;
-            while (key != ConsoleKey.D1 && key != ConsoleKey.D2 && key != ConsoleKey.D3 && key != ConsoleKey.D4 && key != ConsoleKey.D5)
+            while (key != ConsoleKey.D1 && key != ConsoleKey.D2 && key != ConsoleKey.D3 && key != ConsoleKey.D4 && key != ConsoleKey.D5 && key != ConsoleKey.D6)
             {
                 Console.WriteLine();
                 PrintWithColor("Incorrect input, try again: ", ConsoleColor.Red);
@@ -79,17 +79,33 @@ namespace ClassLib
                     {
                         Console.WriteLine(hero.ToJson());
                     }
+                    Thread.Sleep(10000);
+                    Console.Clear();
+                    PrintWithColor("Stop looking at me!", ConsoleColor.Red);
+                    Thread.Sleep(1000);
                     break;
                 case ConsoleKey.D2:
                     Console.Clear();
                     DataProcessing.SerializeToJsonFile(currentAppUsers, file_path);
+                    PrintWithColor("Data loaded!", ConsoleColor.Green);
                     break;
                 case ConsoleKey.D3:
                     Console.Clear();
                     GetFilePath();
                     DataProcessing.SerializeToJsonFile(currentAppUsers, file_path);
-                    Console.Clear();
+                    PrintWithColor("Data loaded!", ConsoleColor.Green);
                     break;
+            }
+        }
+
+        internal static void GetNumber(out int n, string name)
+        {
+            Console.WriteLine($"Input amount of {name}");
+            var answer = Console.ReadLine();
+            while (answer == null || String.IsNullOrEmpty(answer) || !int.TryParse(answer, out n) || int.Parse(answer) > int.MaxValue || int.Parse(answer) < 0)
+            {
+                HelpingMethods.PrintWithColor("Incorrect input, try again", ConsoleColor.Red);
+                answer = Console.ReadLine();
             }
         }
     }
